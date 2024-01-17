@@ -2,17 +2,19 @@
 
 from menu import *
 from item import *
+from configuration import *
 
 def test_function():
     print("Test")
 
 def main():
+    config = Configuration()
     main_menu = Menu("Main Menu")
 
     # Define sub menus
 
-    config_menu_items = [Item("1: Show Config",test_function),
-                         Item("2: Edit Config",test_function),
+    config_menu_items = [Item("1: Show Config",config.report_config),
+                         Item("2: Edit Config",config.edit_config),
                          Item("3: Load Config",test_function),
                          Item("4: Save Config",test_function),
                          Item("5: Back",main_menu.show_menu)]

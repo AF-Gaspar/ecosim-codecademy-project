@@ -1,0 +1,3 @@
+from input_scrub import input_scrub_int
+
+input_scrub_int
