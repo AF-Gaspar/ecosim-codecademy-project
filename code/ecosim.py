@@ -12,7 +12,8 @@ def test_function():
 def main():
     org1 = Creature()
     config = Configuration()
-    sim = Simulation([org1])
+    sim = Simulation(config)
+    sim.creatures.append(org1)
     main_menu = Menu("Main Menu")
 
     # Define sub menus
@@ -29,7 +30,7 @@ def main():
                            Item("4: Save Creatures",test_function),
                            Item("5: Back",main_menu.show_menu)]
 
-    run_menu_items = [Item("1: Run simulation",sim.run_sim(config)),
+    run_menu_items = [Item("1: Run simulation",sim.run_sim),
                       Item("2: Back",main_menu.show_menu)]
     
     config_menu = Menu("Configuration Menu", config_menu_items)

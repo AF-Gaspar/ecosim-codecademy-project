@@ -1,7 +1,8 @@
 #This is the main simulation file that contains the configuration and creatures
 
 class Simulation:
-    def __init__(self, creatures = None):
+    def __init__(self, config, creatures = None):
+        self.config = config
         self.creatures = creatures or []
         self.width = 0
         self.length = 0
@@ -9,13 +10,13 @@ class Simulation:
         self.max_step = 0
         self.map = []
 
-    def consume_config(self, config):
-        self.max_step = config.config['steps']
-        self.length = config.config['length']
-        self.width = config.config['width']
+    def consume_config(self):
+        self.max_step = self.config.config['steps']
+        self.length = self.config.config['length']
+        self.width = self.config.config['width']
         self.map = [[0 for x in range (self.width)] for y in range(self.length)]
 
-        unused_mass = config.config['mass']
+        unused_mass = self.config.config['mass']
         while unused_mass > 0:
             for l in range(self.length):
                 for w in range(self.width):
@@ -39,8 +40,8 @@ class Simulation:
             self.map[creature.location[0]][creature.location[1]] = creature.think()
         self.step += 1
 
-    def run_sim(self, config):
-        self.consume_config(config)
+    def run_sim(self):
+        self.consume_config()
         while self.step < self.max_step:
             self.simulate_step()
             print('Running step: ' + str(self.step))
