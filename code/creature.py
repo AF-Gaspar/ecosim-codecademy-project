@@ -35,5 +35,16 @@ class Creature:
         self.mass -= int(self.mass*.1)
         return baby, self.metabolize()
 
-    def think(self):
-        pass
+    def think(self, local = []):
+        if self.mass < self.metabolism * 500:
+            for item in local:
+                if item is Creature:
+                    return self.consume(item)
+                elif item is int and item > 0:
+                    self.mass += item
+                    item = 0
+                    return self.metabolize()
+        elif self.mass > self.metabolism * 1000:
+            pass
+        else:
+            return self.metabolize()

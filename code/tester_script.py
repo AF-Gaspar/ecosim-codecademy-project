@@ -1,10 +1,9 @@
-from creature import *
+from simulation import *
+from configuration import *
 
-test = Creature()
-test2 = Creature([1,1], 50, .1)
+config = Configuration()
+sim = Simulation()
 
-test.consume(test2)
+sim.consume_config(config)
 
-print(test2.is_alive)
-print(test.age)
-print(test.mass)
+print(sim.map)
